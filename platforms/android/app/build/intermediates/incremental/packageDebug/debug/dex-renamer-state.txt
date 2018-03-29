@@ -1,0 +1,4 @@
+#Thu Mar 29 11:09:58 CEST 2018
+base.0=/home/jayes/Development/planner/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
+renamed.0=classes.dex
+file.0=/home/jayes/Development/planner/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex
