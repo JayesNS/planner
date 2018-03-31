@@ -12,20 +12,47 @@ h3 {
     align-items: center;
 }
 
-#header {
+#title-header {
     height: 50px;
     display: flex;
     flex-direction: row;
     background: slategray;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
-#header h4 {
+.icon-header {
+    display: inline-flex;
+    width: 50px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.icon-header .material-icons {
+    font-size: 35pt;
+    color: floralwhite;
+}
+
+#title-header h4 {
     font-family: 'Lato', sans-serif;
     font-size: 14pt;
+    margin: 0 1em;
     text-transform: uppercase;
     color: floralwhite;
+}
+
+#main, main {
+    height: calc(100vh - 50px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: seashell;
+    display: flex;
+    box-sizing: border-box;
+    padding: 5% 0;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 #back-button {

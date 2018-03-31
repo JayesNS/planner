@@ -8,16 +8,28 @@
 
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/plans.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <title>Document</title>
 </head>
 <body>
-    <header id="header">
-        <a id="back-button" href="../home.html"><</a>
-        <h4>Planer</h4>
-    </header>
-    <main>
-        plans
-    </main>
+<header id="header">
+    <div id="title-header">
+        <a class="icon-header" href="../home.html">
+            <i class="material-icons">keyboard_arrow_left</i>
+        </a>
+    </div>
+    <nav id="tab-nav">
+        <div class="tab-button">grupy</div>
+        <div class="tab-button">nauczyciele</div>
+        <div class="tab-button">sale</div>
+    </nav>
+</header>
+<main>
+    <section id="tab-groups" class="tab">1</section>
+    <section id="tab-teachers" class="tab">2</section>
+    <section id="tab-classes" class="tab">3</section>
+</main>
+<script src="../scripts/plans.js"></script>
 </body>
 </html>

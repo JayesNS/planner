@@ -1,17 +1,5 @@
-#back-button {
-    visibility: hidden;
-}
-
-#main-menu {
-    height: calc(100vh - 50px);
-    overflow-x: hidden;
-    overflow-y: auto;
-    background: seashell;
-    display: flex;
-    box-sizing: border-box;
-    padding: 5% 0;
-    flex-direction: column;
-    justify-content: space-around;
+#title-header {
+    justify-content: center !important;
 }
 
 .bookmark {
