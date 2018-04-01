@@ -1,16 +1,19 @@
-#back-button {
-    visibility: hidden;
+#title-header {
+    justify-content: center !important;
 }
 
-#main-menu {
-    height: calc(100vh - 80px);
-    overflow-x: hidden;
-    overflow-y: auto;
-    background: seashell;
+.bookmark {
+    width: 18vh;
+    height: 18vh;
+    background: dimgray;
     display: flex;
-    padding: 5% 0;
-    flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+    opacity: .2;
+}
+
+.bookmark i {
+    font-size: 7.5vh;
 }
 
 .sliding-item {
@@ -18,25 +21,24 @@
     text-decoration: none;
     color: floralwhite;
     text-transform: uppercase;
-    font-size: 10pt;
-    width: calc(100% - 80px);
-    height: 20%;
+    width: calc(100% - 9vh);
     display: flex;
+    align-items: center;
 }
 
 .sliding-item:nth-child(even) {
     flex-direction: row;
-    right: calc(-100% + 80px);
+    right: calc(-100% + 18vh);
     transition: right ease-out .5s;
 }
 .sliding-item:nth-child(odd) {
     flex-direction: row-reverse;
-    left: calc(-100% + 160px);
+    left: calc(-100% + 27vh);
     transition: left ease-out .5s;
 }
 
 .sliding-item:nth-child(even):hover {
-    right: -80px;
+    right: -9vh;
     transition: right ease-in .5s;
 }
 .sliding-item:nth-child(odd):hover {
@@ -45,14 +47,13 @@
 }
 
 .sliding-item h3 {
-    width: calc(100% - 80px);
+    font-family: 'Lato', sans-serif;
+    font-size: 14pt;
+    width: calc(100% - 18vh);
     display: inline-flex;
     justify-content: center;
     text-align: center;
-}
-.sliding-item i {
-    height: 100%;
-    width: 80px;
+    opacity: .7;
 }
 
 .sliding-item:nth-child(1) {

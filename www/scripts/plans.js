@@ -28,3 +28,18 @@ tabButtons.forEach((tabButton, index) => {
 
 activate(tabButtons[0], tabButtonClass);
 activate(tabs[0], tabClass);
+
+
+
+
+
+let planItem = document.querySelector('#plan-item-template');
+planItem.addEventListener('click', (e) => {
+    console.log('parent');
+    window.location.href = '../home.html';
+});
+console.log(planItem);
+planItem.querySelector('.plan-item-controls').children[0].addEventListener('click', (e) => {
+   console.log('pff');
+   e.stopPropagation();
+});

@@ -2,6 +2,17 @@ main {
     height: calc(100vh - 85px) !important;
 }
 
+/* Search bar */
+#search {
+    padding: .25em 1em;
+    border: none;
+    background: none;
+    font-size: 14pt;
+    font-family: 'Roboto', sans-serif;
+    color: floralwhite;
+}
+
+/* Tab navigation */
 #tab-nav {
     height: 35px;
     display: flex;
@@ -28,23 +39,24 @@ main {
     transition: ease-out .5s;
 }
 
+/* Tabs */
 .tab {
     position: absolute;
-    display: none;
     height: calc(100vh - 85px);
     width: 100%;
     opacity: 0;
     transition: opacity ease-in-out .25s;
     overflow-y: auto;
+    z-index: 99;
 }
 .tab.active {
-    display: initial;
+    z-index: 999;
     opacity: 1;
     transition: opacity ease-in-out .5s;
 }
 
 .tab:nth-child(1) {
-    background: palevioletred;
+    background: ghostwhite;
 }
 .tab:nth-child(2) {
     background: greenyellow;
@@ -53,3 +65,31 @@ main {
     background: cadetblue;
 }
 
+/* Plan list */
+.plan-item {
+    display: flex;
+    color: #363636;
+}
+
+.plan-item-container {
+    width: 100%;
+    margin: .5em 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid slategray;
+}
+
+.plan-item-name {
+
+}
+
+.plan-item-controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.plan-item-controls i {
+    padding: .25em;
+}

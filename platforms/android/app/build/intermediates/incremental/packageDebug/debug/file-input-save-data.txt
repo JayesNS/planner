@@ -1,9 +1,11 @@
 #Internal package file, do not edit.
-#Thu Mar 29 17:35:03 CEST 2018
+#Sat Mar 31 15:02:48 CEST 2018
 25.file=/home/jayes/Development/planner/platforms/android/app/build/intermediates/assets/debug/www/cordova_plugins.js
 25.base=/home/jayes/Development/planner/platforms/android/app/build/intermediates/assets/debug
 22.set=ANDROID_RESOURCE
+36.file=/home/jayes/Development/planner/platforms/android/app/build/intermediates/assets/debug/www/styles/main.css
 8.set=ASSET
+36.base=/home/jayes/Development/planner/platforms/android/app/build/intermediates/assets/debug
 11.set=ANDROID_RESOURCE
 27.set=ASSET
 30.file=/home/jayes/Development/planner/platforms/android/app/build/intermediates/res/debug/resources-debug.ap_/res/drawable-port-ldpi-v4/screen.png
@@ -11,7 +13,7 @@
 30.base=/home/jayes/Development/planner/platforms/android/app/build/intermediates/res/debug/resources-debug.ap_
 14.base=/home/jayes/Development/planner/platforms/android/app/build/intermediates/assets/debug
 16.set=ANDROID_RESOURCE
-count=36
+count=37
 6.file=/home/jayes/Development/planner/platforms/android/app/build/intermediates/res/debug/resources-debug.ap_/res/drawable-port-hdpi-v4/screen.png
 6.base=/home/jayes/Development/planner/platforms/android/app/build/intermediates/res/debug/resources-debug.ap_
 26.file=/home/jayes/Development/planner/platforms/android/app/build/intermediates/res/debug/resources-debug.ap_/res/mipmap-hdpi-v4/icon.png
@@ -47,6 +49,7 @@ count=36
 32.base=/home/jayes/Development/planner/platforms/android/app/build/intermediates/assets/debug
 6.set=ANDROID_RESOURCE
 16.base=/home/jayes/Development/planner/platforms/android/app/build/intermediates/res/debug/resources-debug.ap_
+36.set=ASSET
 8.file=/home/jayes/Development/planner/platforms/android/app/build/intermediates/assets/debug/www/cordova-js-src/android/nativeapiprovider.js
 8.base=/home/jayes/Development/planner/platforms/android/app/build/intermediates/assets/debug
 17.file=/home/jayes/Development/planner/platforms/android/app/build/intermediates/res/debug/resources-debug.ap_/res/mipmap-xhdpi-v4/icon.png
@@ -83,7 +86,7 @@ count=36
 23.file=/home/jayes/Development/planner/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex
 29.set=ANDROID_RESOURCE
 23.base=/home/jayes/Development/planner/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
-34.file=/home/jayes/Development/planner/platforms/android/app/build/intermediates/assets/debug/www/cordova-js-src/android/promptbasednativeapi.js
+34.file=/home/jayes/Development/planner/platforms/android/app/build/intermediates/assets/debug/www/scripts/plans.js
 34.base=/home/jayes/Development/planner/platforms/android/app/build/intermediates/assets/debug
 18.set=ASSET
 19.file=/home/jayes/Development/planner/platforms/android/app/build/intermediates/res/debug/resources-debug.ap_/res/drawable-land-xxhdpi-v4/screen.png
@@ -99,7 +102,7 @@ count=36
 9.set=ANDROID_RESOURCE
 24.base=/home/jayes/Development/planner/platforms/android/app/build/intermediates/res/debug/resources-debug.ap_
 12.set=ANDROID_RESOURCE
-35.file=/home/jayes/Development/planner/platforms/android/app/build/intermediates/assets/debug/www/styles/main.css
+35.file=/home/jayes/Development/planner/platforms/android/app/build/intermediates/assets/debug/www/cordova-js-src/android/promptbasednativeapi.js
 35.base=/home/jayes/Development/planner/platforms/android/app/build/intermediates/assets/debug
 28.set=ANDROID_RESOURCE
 17.set=ANDROID_RESOURCE
