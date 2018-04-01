@@ -21,29 +21,30 @@
     text-decoration: none;
     color: floralwhite;
     text-transform: uppercase;
-    width: calc(100% - 9vh);
     display: flex;
     align-items: center;
+    transition: ease-out .5s;
 }
 
-.sliding-item:nth-child(even) {
-    flex-direction: row;
-    right: calc(-100% + 18vh);
-    transition: right ease-out .5s;
-}
 .sliding-item:nth-child(odd) {
     flex-direction: row-reverse;
-    left: calc(-100% + 27vh);
-    transition: left ease-out .5s;
+    margin-right: 9vh;
+}
+.sliding-item:nth-child(even) {
+    flex-direction: row;
+    margin-left: 9vh;
 }
 
-.sliding-item:nth-child(even):hover {
-    right: -9vh;
-    transition: right ease-in .5s;
+.sliding-item:hover {
+    transition: ease-in .5s;
 }
 .sliding-item:nth-child(odd):hover {
-    left: 0;
-    transition: left ease-in .5s;
+    padding-left: 4.5vh;
+    margin-right: 4.5vh;
+}
+.sliding-item:nth-child(even):hover {
+    padding-right: 4.5vh;
+    margin-left: 4.5vh;
 }
 
 .sliding-item h3 {
