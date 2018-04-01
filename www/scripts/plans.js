@@ -17,6 +17,26 @@ const activate = (element, elementClass) => {
     }
 };
 
+const getPlanItemTemplate = () => {
+    const planItemTemplate = document.querySelector('#plan-item-template');
+    planItemTemplate.remove();
+    planItemTemplate.removeAttribute('id');
+    return planItemTemplate.cloneNode(true);
+};
+
+const insertPlanItemTemplate = (data, item, container) => {
+    const planItem = item.cloneNode(true);
+    const saveButton = planItem.querySelector('.plan-item-controls').children[0];
+    const name = planItem.querySelector('.plan-item-name');
+
+    name.innerHTML = data.name;
+    saveButton.addEventListener('click', () => {
+        document.querySelector('#search').value = data.id;
+    });
+
+    container.appendChild(planItem);
+};
+
 tabButtons.forEach((tabButton, index) => {
    tabButton.addEventListener('click', (event) => {
        let element = event.target;
@@ -29,17 +49,10 @@ tabButtons.forEach((tabButton, index) => {
 activate(tabButtons[0], tabButtonClass);
 activate(tabs[0], tabClass);
 
-
-
-
-
-let planItem = document.querySelector('#plan-item-template');
-planItem.addEventListener('click', (e) => {
-    console.log('parent');
-    window.location.href = '../home.html';
-});
-console.log(planItem);
-planItem.querySelector('.plan-item-controls').children[0].addEventListener('click', (e) => {
-   console.log('pff');
-   e.stopPropagation();
-});
+const planItemTemplate = getPlanItemTemplate();
+const planList = document.querySelector('#tab-groups');
+console.log(new Date().getTime());
+for (let i = 0; i < 100; ++i) {
+    insertPlanItemTemplate({name: 'KrDZIs'+i, id: i}, planItemTemplate, planList);
+}
+console.log(new Date().getTime());

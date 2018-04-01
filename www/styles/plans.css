@@ -10,6 +10,12 @@ main {
     font-size: 14pt;
     font-family: 'Roboto', sans-serif;
     color: floralwhite;
+    flex-grow: 1;
+}
+
+#search::placeholder {
+    color: lightgray;
+    opacity: 1;
 }
 
 /* Tab navigation */
@@ -68,20 +74,18 @@ main {
 /* Plan list */
 .plan-item {
     display: flex;
-    color: #363636;
+    color: #4a4a4c;
+    cursor: pointer;
 }
 
 .plan-item-container {
     width: 100%;
     margin: .5em 1em;
+    padding: 0 .25em;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid slategray;
-}
-
-.plan-item-name {
-
+    border-bottom: 1px solid lightgray;
 }
 
 .plan-item-controls {
@@ -91,5 +95,6 @@ main {
 }
 
 .plan-item-controls i {
+    font-size: 1.5em;
     padding: .25em;
 }

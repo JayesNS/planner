@@ -1,2 +1,3 @@
-platforms/android/app
-platforms/android/CordovaLib
+.idea/
+platforms/
+.npmignore
