@@ -1,0 +1,104 @@
+/* Plan range */
+#plan-range {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    background: none;
+    margin: .25em .5em;
+    font-size: 14pt;
+    font-family: 'Roboto', sans-serif;
+    color: floralwhite;
+    flex-grow: 1;
+    border-bottom: 1px solid lightslategray;
+}
+
+/* Activity groups */
+.activity-group {
+    width: 100%;
+    padding: .5em 0;
+}
+
+.activity-header {
+    display: flex;
+    justify-content: space-between;
+    padding: .25em 1em;
+    margin: 0 .5em .5em;
+    font-family: 'Lato', sans-serif;
+    color: salmon;
+    border-bottom: 2px solid salmon;
+}
+.activity-day {
+    text-transform: uppercase;
+}
+.activity-date {
+    color: #4a4a4c;
+}
+
+
+/* Activities */
+.activity {
+    margin: .75em 1em;
+    padding: 0 .5em;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    font-size: 10pt;
+    color: #4a4a4c;
+}
+
+.activity div {
+    width: 100%;
+    display: flex;
+    margin: .2em;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.activity div:first-child {
+    margin-bottom: .5em;
+}
+
+.activity-name {
+    font-size: 1.25em;
+    padding-right: .25em;
+}
+
+
+.activity-location {
+
+}
+
+
+.activity-time {
+    font-size: 1.1em;
+    white-space: nowrap;
+}
+
+
+.activity-organizer a {
+    display: inline-flex;
+    align-items: center;
+    color: inherit;
+    text-decoration: none;
+}
+.activity-organizer i {
+    margin-left: .25em;
+    font-size: 1em;
+}
+
+.activity:nth-child(2) {
+    border-left: 4px solid mediumaquamarine;
+    border-bottom: 1px solid mediumaquamarine;
+}
+.activity:nth-child(3) {
+    border-left: 4px solid slateblue;
+    border-bottom: 1px solid slateblue;
+}
+.activity:nth-child(4) {
+    border-left: 4px solid yellowgreen;
+    border-bottom: 1px solid yellowgreen;
+}
+.activity:nth-child(5) {
+    border-left: 4px solid tomato;
+    border-bottom: 1px solid tomato;
+}

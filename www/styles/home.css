@@ -2,6 +2,10 @@
     justify-content: center !important;
 }
 
+#main {
+    justify-content: space-around !important;
+}
+
 .bookmark {
     width: 18vh;
     height: 18vh;
