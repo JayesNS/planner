@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Roboto:100,300&subset=latin-ext');
+@import 'animations.css';
 
 html, body {
     margin: 0;
     overflow: hidden;
+    animation: fadeIn .5s ease-out 0s 1;
 }
 
 h3 {
