@@ -5,10 +5,13 @@ const getPlanItemTemplate = () => {
     return planItemTemplate.cloneNode(true);
 };
 
-const insertPlanItemTemplate = (data, item, container) => {
+const insertPlanItemTemplate = (data, item, container, type) => {
     const planItem = item.cloneNode(true);
     const saveButton = planItem.querySelector('.plan-item-controls').children[0];
     const name = planItem.querySelector('.plan-item-name');
+
+    if (type !== undefined)
+        planItem.classList.add(`type-${type}`);
 
     name.innerHTML = data.name;
     saveButton.addEventListener('click', () => {
@@ -19,9 +22,18 @@ const insertPlanItemTemplate = (data, item, container) => {
 };
 
 const planItemTemplate = getPlanItemTemplate();
-const planList = document.querySelector('#tab-groups');
-console.log(new Date().getTime());
-for (let i = 0; i < 100; ++i) {
-    insertPlanItemTemplate({name: 'KrDZIs'+i, id: i}, planItemTemplate, planList);
+
+let planList = document.querySelector('#tab-groups');
+for (let i = 0; i < 10; ++i) {
+    insertPlanItemTemplate({name: 'KrDZIs'+i, id: i}, planItemTemplate, planList, 'group');
 }
-console.log(new Date().getTime());
+
+planList = document.querySelector('#tab-teachers');
+for (let i = 0; i < 5; ++i) {
+    insertPlanItemTemplate({name: 'KrDZIs'+i, id: i}, planItemTemplate, planList, 'teacher');
+}
+
+planList = document.querySelector('#tab-classrooms');
+for (let i = 0; i < 7; ++i) {
+    insertPlanItemTemplate({name: 'KrDZIs'+i, id: i}, planItemTemplate, planList, 'classroom');
+}

@@ -39,10 +39,25 @@ main {
     text-transform: uppercase;
     cursor: pointer;
     transition: ease-in .25s;
+
+    box-sizing: border-box;
+    background-clip: border-box;
+    border-bottom: 5px solid rgba(0,0,0,0);
 }
 .tab-button.active, .tab-button:hover {
-    background: #7a8a9a;
     transition: ease-out .5s;
+}
+.tab-button:nth-child(1).active,
+.tab-button:nth-child(1):hover {
+    border-bottom-color: tomato;
+}
+.tab-button:nth-child(2).active,
+.tab-button:nth-child(2):hover {
+    border-bottom-color: yellowgreen;
+}
+.tab-button:nth-child(3).active,
+.tab-button:nth-child(3):hover {
+    border-bottom-color: cornflowerblue;
 }
 
 /* Tabs */
@@ -61,31 +76,20 @@ main {
     transition: opacity ease-in-out .5s;
 }
 
-.tab:nth-child(1) {
-    background: ghostwhite;
-}
-.tab:nth-child(2) {
-    background: greenyellow;
-}
-.tab:nth-child(3) {
-    background: cadetblue;
-}
-
 /* Plan list */
 .plan-item {
     display: flex;
     color: #4a4a4c;
     cursor: pointer;
+    margin: .5em 1em;
+    padding: .15em .5em;
 }
 
 .plan-item-container {
     width: 100%;
-    margin: .5em 1em;
-    padding: 0 .25em;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid lightgray;
 }
 
 .plan-item-controls {

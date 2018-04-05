@@ -71,3 +71,21 @@ h3 {
     justify-content: center;
     align-items: center;
 }
+
+[class*="type-"] {
+    box-sizing: border-box;
+    border-left: 4px solid;
+    border-bottom: 1px solid;
+}
+.type-group {
+    border-left-color: tomato;
+    border-bottom-color: tomato;
+}
+.type-teacher {
+    border-left-color: yellowgreen;
+    border-bottom-color: yellowgreen;
+}
+.type-classroom {
+    border-left-color: cornflowerblue;
+    border-bottom-color: cornflowerblue;
+}
