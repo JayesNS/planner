@@ -18,5 +18,6 @@ const insertPlanItemTemplate = (data, item, container, type) => {
         document.querySelector('#search').value = data.id;
     });
 
-    container.appendChild(planItem);
+    if (container !== null)
+        container.appendChild(planItem);
 };
