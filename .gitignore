@@ -1,3 +1,6 @@
 .idea/
 platforms/
 .npmignore
+server/api-config.js
+server/node_modules
+server/package-lock.json
