@@ -3,14 +3,22 @@ const tabClass = '.tab';
 const tabButtons = document.querySelectorAll(tabButtonClass);
 const tabs = document.querySelectorAll(tabClass);
 let activatedTab;
+var onTabChange;
 
 const activate = (element, elementClass) => {
+
+    if (element === activatedTab) {
+        return;
+    }
+
     element.classList.add('active');
 
-    if (element.classList.contains('tab'))
-        activatedTab = element;
 
-    // console.log(element, elementClass);
+    if (element.classList.contains('tab')) {
+        onTabChange(element, activatedTab);
+        activatedTab = element;
+    }
+
     if (elementClass !== undefined) {
         const elementArray = [...document.querySelectorAll(elementClass)];
 
