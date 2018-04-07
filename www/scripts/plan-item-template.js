@@ -13,9 +13,9 @@ const insertPlanItemTemplate = (data, item, container, type) => {
     if (type !== undefined)
         planItem.classList.add(`type-${type}`);
 
-    name.innerHTML = data.name;
+    name.innerHTML = data['nazwa'];
     saveButton.addEventListener('click', () => {
-        document.querySelector('#search').value = data.id;
+        document.querySelector('#search').value = data['id'];
     });
 
     if (container !== null)
