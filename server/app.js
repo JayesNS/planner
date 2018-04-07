@@ -46,7 +46,7 @@ app.get('/api/:type/:id?/:range?', (req, res) => {
     }
 
     getRawJSON(prepareUrl(Type[req.params.type], req.params.id, req.params.range)).then((data) => {
-        res.json(JSON.parse(data));
+        res.json(JSON.parse(data)['plan-zajec']);
     });
 });
 
