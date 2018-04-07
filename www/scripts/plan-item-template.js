@@ -15,7 +15,7 @@ const insertPlanItemTemplate = (data, item, container, type) => {
 
     name.innerHTML = data['nazwa'];
     saveButton.addEventListener('click', () => {
-        document.querySelector('#search').value = data['id'];
+        // document.querySelector('#search').value = data['id'];
     });
 
     if (container !== null)
