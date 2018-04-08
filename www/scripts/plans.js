@@ -1,8 +1,6 @@
 const planItemTemplate = getPlanItemTemplate();
 let planList;
-let filteredPlanList;
 let planItemIndex;
-let type;
 let container;
 
 const search = document.querySelector('#search');
@@ -13,19 +11,10 @@ onTabChange = (element, previousContainer) => {
 
     cleanContainer(previousContainer);
 
-    // Preparing type for API request
-    type = container.getAttribute('id').replace('tab-', '');
-
-    getData(prepareUrl(type)).then(data => {
+    getData(prepareUrl(getPlanType())).then(data => {
         planList = data['zasob'];
-        filterPlanList(search.value);
 
-        console.log(data);
-
-        for (planItemIndex; planItemIndex < 100; ++planItemIndex) {
-            if (planItemIndex < planList.length)
-                insertPlanItemTemplate(filteredPlanList[planItemIndex], planItemTemplate, container, type.slice(0, -1));
-        }
+        loadMore(100, search.value);
     });
 };
 
@@ -38,32 +27,40 @@ const cleanContainer = (container) => {
     }
 };
 
-const loadMore = () => {
-    let last = planItemIndex + 100;
+const getPlanType = () => {
+  return container.getAttribute('id').replace('tab-', '');
+};
+
+const loadMore = (amount) => {
+    let last = planItemIndex + amount;
+    let filteredPlanList = filterPlanList(search.value);
 
     for (planItemIndex; planItemIndex < last; ++planItemIndex) {
         if (planItemIndex < planList.length)
-            insertPlanItemTemplate(filteredPlanList[planItemIndex], planItemTemplate, container, type.slice(0, -1));
+            insertPlanItemTemplate(filteredPlanList[planItemIndex], planItemTemplate, container, getPlanType().slice(0, -1));
     }
 };
 
-const filterPlanList = (substr) => {
-    let regex = new RegExp(`${substr}`, 'i');
-    filteredPlanList = planList.filter((value) => regex.test(value['nazwa']));
-    return filteredPlanList;
+// Return filtered plan list items
+const filterPlanList = (filter) => {
+    // Every string containing given substring
+    let regex = new RegExp(`${filter}`, 'i');
+    // Filter elements which name contains value
+    return planList.filter((value) => regex.test(value['nazwa']));
 };
 
-const updatePlanList = () => {
-
-    insertPlanItemTemplate(filteredPlanList[planItemIndex], planItemTemplate, container, type.slice(0, -1))
-};
-
-search.addEventListener('keyup', (event) => {
-     //console.log(event);
-    planItemIndex = 0;
+// Updating plan list with new values
+const updatePlanList = (amount) => {
+    // Clean container to prevent duplicates
     cleanContainer(container);
-    filterPlanList(event.target.value);
-    loadMore();
-    console.log(filteredPlanList);
-    //updatePlanList();
+    // Loading filtered elements
+    loadMore(amount, search.value);
+};
+
+// User is searching for new value
+search.addEventListener('keyup', () => {
+    // Start counting from 0
+    planItemIndex = 0;
+    // Update plan list with 100 elements and filtered by searched value
+    updatePlanList(100);
 });

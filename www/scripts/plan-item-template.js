@@ -6,6 +6,9 @@ const getPlanItemTemplate = () => {
 };
 
 const insertPlanItemTemplate = (data, item, container, type) => {
+    if (data === undefined)
+        return;
+
     const planItem = item.cloneNode(true);
     const saveButton = planItem.querySelector('.plan-item-controls').children[0];
     const name = planItem.querySelector('.plan-item-name');
