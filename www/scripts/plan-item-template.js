@@ -2,7 +2,7 @@ const getPlanItemTemplate = () => {
     const planItemTemplate = document.querySelector('#plan-item-template');
     planItemTemplate.remove();
     planItemTemplate.removeAttribute('id');
-    return planItemTemplate.cloneNode(true);
+    return planItemTemplate;
 };
 
 const insertPlanItemTemplate = (data, item, container, type) => {
@@ -17,8 +17,17 @@ const insertPlanItemTemplate = (data, item, container, type) => {
         planItem.classList.add(`type-${type}`);
 
     name.innerHTML = data['nazwa'];
-    saveButton.addEventListener('click', () => {
+
+    planItem.addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        document.location = 'plan.html?type='+data['typ']+'&id='+data['id'];
+    });
+
+    saveButton.addEventListener('click', (e) => {
+        e.stopPropagation();
         // document.querySelector('#search').value = data['id'];
+        console.log('saveButton');
     });
 
     if (container !== null)
