@@ -18,15 +18,6 @@ onTabChange = (element, previousContainer) => {
     });
 };
 
-const cleanContainer = (container) => {
-    // Cleaning previous container
-    if (container !== undefined) {
-        while (container.firstChild) {
-            container.removeChild(container.firstChild);
-        }
-    }
-};
-
 const getPlanType = () => {
   return container.getAttribute('id').replace('tab-', '');
 };
