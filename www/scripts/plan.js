@@ -1,4 +1,6 @@
 let params = new URL(window.location.href).searchParams;
+const activityTemplate = getTemplate(document.querySelector('.activity'));
+const activityGroupTemplate = getTemplate(document.querySelector('.activity-group'));
 
 const formatWeekDay = (day) => {
     const WeekDays = {
@@ -12,6 +14,14 @@ const formatWeekDay = (day) => {
     };
 
     return WeekDays[day];
+};
+
+const fillRangeSelect = (rangeArray, element) => {
+    const array = [...element.children];
+
+    array.forEach((option, index) => {
+        console.log(rangeArray[index]);
+    });
 };
 
 const formatDate = (date) => {
@@ -55,21 +65,40 @@ const changeText = (element, text) => {
     element.textContent = text;
 };
 
-const activityTemplate = getTemplate(document.querySelector('.activity'));
-const activityGroupTemplate = getTemplate(document.querySelector('.activity-group'));
-const container = document.querySelector('main');
-
 document.querySelector('#back-button').addEventListener('click', (e) => {
     e.stopPropagation();
 
     history.back();
 });
 
-console.debug(prepareUrl(params.get('type'), params.get('id'), 1));
-getData(prepareUrl(params.get('type'), params.get('id'), 1)).then(data => {
-    let acGroups = groupBy(data['zajecia'], 'termin');
+const groupBy = (array, by) => {
+    let plan = [];
 
-    console.debug(acGroups);
+    if (array === undefined) {
+        throw new Error('"array" is undefined');
+    }
+
+    array.forEach(elem => {
+        if (!plan.some(val => val[by] === elem[by])) {
+            plan.push({
+                termin: elem['termin'],
+                dzien: elem['dzien'],
+                zajecia: []
+            });
+        }
+
+        let day = plan.find(val => val[by] === elem[by]);
+        delete elem['termin'];
+        delete elem['dzien'];
+
+        day['zajecia'].push(elem);
+    });
+    return plan;
+};
+
+const loadActivities = (data) => {
+    let acGroups = groupBy(data, 'termin');
+
     for (let acGroupData of acGroups) {
         let acGroup = activityGroupTemplate.cloneNode(true);
 
@@ -83,40 +112,29 @@ getData(prepareUrl(params.get('type'), params.get('id'), 1)).then(data => {
             changeText(activity.querySelector('.activity-time'), `${acData['od-godz']} - ${acData['do-godz']}`);
             changeText(activity.querySelector('.activity-location'), acData['sala'] || '');
             changeText(activity.querySelector('.activity-group-name'), acData['grupa'] || '');
-            changeText(activity.querySelector('.activity-organizer'), acData['nauczyciel'] || acData['grupa']);
+            changeText(activity.querySelector('.activity-organizer'), acData['nauczyciel'] || '');
             changeText(activity.querySelector('.activity-type'), acData['typ']);
 
             acGroup.querySelector('.activity-container').appendChild(activity);
         }
-        container.appendChild(acGroup);
+        document.querySelector('main').appendChild(acGroup);
     }
+};
 
-   //document.querySelector('main').innerHTML = JSON.stringify(groupBy(data['zajecia'], 'termin'));
-}).catch(error => {
-   console.error(error);
+// todo loading batches of activities instead of loading all at onnce
+const load = (range) => {
+    console.debug(prepareUrl(params.get('type'), params.get('id'), range));
+
+    getData(prepareUrl(params.get('type'), params.get('id'), range)).then(data => {
+        loadActivities(data['zajecia']);
+    }).catch(error => {
+        console.error(error);
+    });
+};
+
+document.querySelector('#plan-range').addEventListener('change', (e) => {
+    cleanContainer(document.querySelector('main'));
+    load(e.target.value);
 });
 
-const groupBy = (array, groupBy) => {
-    let plan = [];
-
-    if (array === undefined) {
-        throw new Error('"array" is undefined');
-    }
-
-    array.forEach(elem => {
-        if (!plan.some(val => val['termin'] === elem['termin'])) {
-            plan.push({
-                termin: elem['termin'],
-                dzien: elem['dzien'],
-                zajecia: []
-            });
-        }
-
-        let day = plan.find(val => val['termin'] === elem['termin']);
-        delete elem['termin'];
-        delete elem['dzien'];
-
-        day['zajecia'].push(elem);
-    });
-    return plan;
-};
+load(document.querySelector('#plan-range').value);
