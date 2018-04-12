@@ -28,6 +28,7 @@
     border-bottom: 2px solid salmon;
 }
 .activity-day {
+    font-size: .8em;
     text-transform: uppercase;
 }
 .activity-date {
@@ -48,14 +49,18 @@
 
 .activity div {
     width: 100%;
-    display: flex;
-    margin: .2em;
+    display: inline-flex;
+    box-sizing: content-box;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 .activity div:first-child {
     margin-bottom: .5em;
+}
+
+.activity div span {
+    margin: .2em;
 }
 
 .activity-name {
@@ -86,19 +91,19 @@
     font-size: 1em;
 }
 
-.activity:nth-child(2) {
+.activity:nth-child(1) {
     border-left: 4px solid mediumaquamarine;
     border-bottom: 1px solid mediumaquamarine;
 }
-.activity:nth-child(3) {
+.activity:nth-child(2) {
     border-left: 4px solid slateblue;
     border-bottom: 1px solid slateblue;
 }
-.activity:nth-child(4) {
+.activity:nth-child(3) {
     border-left: 4px solid yellowgreen;
     border-bottom: 1px solid yellowgreen;
 }
-.activity:nth-child(5) {
+.activity:nth-child(4) {
     border-left: 4px solid tomato;
     border-bottom: 1px solid tomato;
 }
