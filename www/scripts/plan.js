@@ -55,8 +55,8 @@ const changeText = (element, text) => {
     element.textContent = text;
 };
 
-const activityTemplate = getActivityTemplate();
-const activityGroupTemplate = getActivityGroupTemplate();
+const activityTemplate = getTemplate(document.querySelector('.activity'));
+const activityGroupTemplate = getTemplate(document.querySelector('.activity-group'));
 const container = document.querySelector('main');
 
 document.querySelector('#back-button').addEventListener('click', (e) => {

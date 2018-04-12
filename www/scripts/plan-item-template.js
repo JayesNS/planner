@@ -1,10 +1,3 @@
-const getPlanItemTemplate = () => {
-    const planItemTemplate = document.querySelector('#plan-item-template');
-    planItemTemplate.remove();
-    planItemTemplate.removeAttribute('id');
-    return planItemTemplate;
-};
-
 const insertPlanItemTemplate = (data, item, container, type) => {
     if (data === undefined)
         return;
