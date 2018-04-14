@@ -10,6 +10,7 @@ main {
     font-size: 14pt;
     font-family: 'Roboto', sans-serif;
     color: floralwhite;
+    max-width: calc(100% - 50px);
     flex-grow: 1;
 }
 
