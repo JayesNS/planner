@@ -1,4 +1,4 @@
-const planItemTemplate = getTemplate(document.querySelector('#plan-item-template'));
+const planItemTemplate = getTemplate(document.querySelector('.plan-item'));
 let planList;
 let planItemIndex;
 let container;

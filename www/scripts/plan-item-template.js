@@ -3,7 +3,6 @@ const insertPlanItemTemplate = (data, item, container, type) => {
         return;
 
     const planItem = item.cloneNode(true);
-    const saveButton = planItem.querySelector('.plan-item-controls').children[0];
     const name = planItem.querySelector('.plan-item-name');
 
     if (type !== undefined)
@@ -15,12 +14,6 @@ const insertPlanItemTemplate = (data, item, container, type) => {
         e.stopPropagation();
 
         document.location = 'plan.html?type='+data['typ']+'&id='+data['id'];
-    });
-
-    saveButton.addEventListener('click', (e) => {
-        e.stopPropagation();
-        // document.querySelector('#search').value = data['id'];
-        console.log('saveButton');
     });
 
     if (container !== null)

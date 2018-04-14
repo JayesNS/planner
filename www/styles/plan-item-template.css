@@ -11,15 +11,5 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.plan-item-controls {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.plan-item-controls i {
-    font-size: 1.5em;
     padding: .25em;
 }
