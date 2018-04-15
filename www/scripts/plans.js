@@ -27,8 +27,26 @@ const loadMore = (amount) => {
     let filteredPlanList = filterPlanList(search.value);
 
     for (planItemIndex; planItemIndex < last; ++planItemIndex) {
-        if (planItemIndex < planList.length)
-            insertPlanItemTemplate(filteredPlanList[planItemIndex], planItemTemplate, container, getPlanType().slice(0, -1));
+        if (planItemIndex >= filteredPlanList.length)
+            break;
+
+        const item = filteredPlanList[planItemIndex];
+
+        fillAndInsertTemplate(container, planItemTemplate, {
+            classes: [`type-${getPlanType().slice(0, -1)}`],
+            elements: {
+                '.plan-item-name': {
+                    text: item['nazwa'],
+                    eventListener: {
+                        type: 'click',
+                        func: (e) => {
+                            e.stopPropagation();
+                            document.location = 'plan.html?type='+item['typ']+'&id='+item['id'];
+                        }
+                    }
+                }
+            }
+        });
     }
 };
 

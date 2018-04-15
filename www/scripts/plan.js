@@ -44,27 +44,6 @@ const formatDate = (date) => {
   return `${datetime.getDate()} ${Months[datetime.getMonth()]} ${datetime.getFullYear()}`;
 };
 
-const changeText = (element, text) => {
-
-    if (element === null) {
-        throw new Error('"element" is null');
-    }
-
-    // Checking if text is an object
-    text = text['$t'] !== undefined ? text['$t'] : text;
-    // Checking if object is empty
-    text = Object.keys(text).length === 0 && text.constructor === Object ? '' : text;
-
-    // If text not set delete element
-    if (!text) {
-        element.remove();
-        return;
-    }
-
-    // Append text to element
-    element.textContent = text;
-};
-
 document.querySelector('#back-button').addEventListener('click', (e) => {
     e.stopPropagation();
 
@@ -99,22 +78,43 @@ const loadActivities = (data) => {
     for (let acGroupData of acGroups) {
         let acGroup = activityGroupTemplate.cloneNode(true);
 
-        changeText(acGroup.querySelector('.activity-date'), formatDate(acGroupData['termin']));
-        changeText(acGroup.querySelector('.activity-day'), formatWeekDay(acGroupData['dzien']));
-
         for (let acData of acGroupData['zajecia']) {
             let activity = activityTemplate.cloneNode(true);
 
-            changeText(activity.querySelector('.activity-name'), acData['przedmiot']);
-            changeText(activity.querySelector('.activity-time'), `${acData['od-godz']} - ${acData['do-godz']}`);
-            changeText(activity.querySelector('.activity-location'), acData['sala'] || '');
-            changeText(activity.querySelector('.activity-group-name'), acData['grupa'] || '');
-            changeText(activity.querySelector('.activity-organizer'), acData['nauczyciel'] || '');
-            changeText(activity.querySelector('.activity-type'), acData['typ']);
-
-            acGroup.querySelector('.activity-container').appendChild(activity);
+            fillAndInsertTemplate(acGroup.querySelector('.activity-container'), activity, {
+                elements: {
+                    '.activity-name': {
+                        text: acData['przedmiot']
+                    },
+                    '.activity-time': {
+                        text: `${acData['od-godz']} - ${acData['do-godz']}`
+                    },
+                    '.activity-location': {
+                        text: acData['sala'] || ''
+                    },
+                    '.activity-group-name': {
+                        text: acData['grupa'] || ''
+                    },
+                    '.activity-organizer': {
+                        text: acData['nauczyciel'] || ''
+                    },
+                    '.activity-type': {
+                        text: acData['typ']
+                    }
+                }
+            });
         }
-        document.querySelector('main').appendChild(acGroup);
+
+        fillAndInsertTemplate(document.querySelector('main'), acGroup, {
+            elements: {
+                '.activity-date': {
+                    text: formatDate(acGroupData['termin'])
+                },
+                '.activity-day': {
+                    text: formatWeekDay(acGroupData['dzien'])
+                }
+            }
+        });
     }
 };
 

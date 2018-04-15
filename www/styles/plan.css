@@ -75,6 +75,8 @@
 
 
 .activity-time {
+    align-self: flex-start;
+    justify-self: flex-end;
     font-size: 1.1em;
     white-space: nowrap;
 }

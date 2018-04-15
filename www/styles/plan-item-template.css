@@ -3,7 +3,6 @@
     color: #4a4a4c;
     cursor: pointer;
     margin: .5em 1em;
-    padding: .15em .5em;
 }
 
 .plan-item-container {
@@ -11,5 +10,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: .25em;
+    padding: .4em 0 .4em .5em;
+}
+
+.plan-item-controls {
+    white-space: nowrap;
 }
