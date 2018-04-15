@@ -1,9 +1,13 @@
-const planItemTemplate = getPlanItemTemplate();
+const planItemTemplate = getTemplate(document.querySelector('.plan-item'));
 const container = document.querySelector('main');
 
 const types = ['group', 'teacher', 'classroom'];
 
-for (let i = 0; i < 5; ++i) {
+const plans = loadFromLocalStorage();
+
+for (let planId in plans) {
+    const plan = plans[planId];
     let type = Math.floor(Math.random()*3);
-    insertPlanItemTemplate({name: 'grupa'+i, id: i}, planItemTemplate, container, types[type]);
+    console.log(plan);
+    insertPlanItemTemplate({nazwa: plan['nazwa'], typ: plan['typ'], id: plan['id']}, planItemTemplate, container, types[type]);
 }

@@ -86,10 +86,7 @@ const groupBy = (array, by) => {
                 zajecia: []
             });
         }
-
         let day = plan.find(val => val[by] === elem[by]);
-        delete elem['termin'];
-        delete elem['dzien'];
 
         day['zajecia'].push(elem);
     });
@@ -125,7 +122,14 @@ const loadActivities = (data) => {
 const load = (range) => {
     console.debug(prepareUrl(params.get('type'), params.get('id'), range));
 
+    // Loading data from local storage
+    //loadActivities(loadFromLocalStorage()['zajecia']);
+
     getData(prepareUrl(params.get('type'), params.get('id'), range)).then(data => {
+        document.querySelector('#save-button').addEventListener('click', () => {
+            saveToLocalStorage(data);
+        });
+
         loadActivities(data['zajecia']);
     }).catch(error => {
         console.error(error);
