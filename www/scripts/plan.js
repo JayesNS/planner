@@ -1,6 +1,8 @@
 let params = new URL(window.location.href).searchParams;
 const activityTemplate = getTemplate(document.querySelector('.activity'));
 const activityGroupTemplate = getTemplate(document.querySelector('.activity-group'));
+let loadedData;
+let loadedActivityGroups = 0;
 
 const formatWeekDay = (day) => {
     const WeekDays = {
@@ -14,14 +16,6 @@ const formatWeekDay = (day) => {
     };
 
     return WeekDays[day];
-};
-
-const fillRangeSelect = (rangeArray, element) => {
-    const array = [...element.children];
-
-    array.forEach((option, index) => {
-        console.log(rangeArray[index]);
-    });
 };
 
 const formatDate = (date) => {
@@ -72,11 +66,14 @@ const groupBy = (array, by) => {
     return plan;
 };
 
-const loadActivities = (data) => {
-    let acGroups = groupBy(data, 'termin');
+const loadActivities = (amount) => {
+    let targetLoadedActivityGroups = loadedActivityGroups + amount;
 
-    for (let acGroupData of acGroups) {
+    for (loadedActivityGroups;
+         loadedActivityGroups < targetLoadedActivityGroups && loadedActivityGroups < loadedData.length;
+         ++loadedActivityGroups) {
         let acGroup = activityGroupTemplate.cloneNode(true);
+        let acGroupData = loadedData[loadedActivityGroups];
 
         for (let acData of acGroupData['zajecia']) {
             let activity = activityTemplate.cloneNode(true);
@@ -116,9 +113,11 @@ const loadActivities = (data) => {
             }
         });
     }
+
+    if (loadedActivityGroups < loadedData.length)
+        appendLoadMoreButton(document.querySelector('main'));
 };
 
-// todo loading batches of activities instead of loading all at onnce
 const load = (range) => {
     console.debug(prepareUrl(params.get('type'), params.get('id'), range));
 
@@ -126,17 +125,20 @@ const load = (range) => {
     //loadActivities(loadFromLocalStorage()['zajecia']);
 
     getData(prepareUrl(params.get('type'), params.get('id'), range)).then(data => {
+        loadedData = groupBy(data['zajecia'], 'termin');;
+
         document.querySelector('#save-button').addEventListener('click', () => {
             saveToLocalStorage(data);
         });
 
-        loadActivities(data['zajecia']);
+        loadActivities(10);
     }).catch(error => {
         console.error(error);
     });
 };
 
 document.querySelector('#plan-range').addEventListener('change', (e) => {
+    loadedActivityGroups = 0;
     cleanContainer(document.querySelector('main'));
     load(e.target.value);
 });

@@ -48,6 +48,9 @@ const loadMore = (amount) => {
             }
         });
     }
+
+    if (filteredPlanList.length > planItemIndex)
+        appendLoadMoreButton(container);
 };
 
 // Return filtered plan list items
@@ -58,18 +61,12 @@ const filterPlanList = (filter) => {
     return planList.filter((value) => regex.test(value['nazwa']));
 };
 
-// Updating plan list with new values
-const updatePlanList = (amount) => {
-    // Clean container to prevent duplicates
-    cleanContainer(container);
-    // Loading filtered elements
-    loadMore(amount, search.value);
-};
-
 // User is searching for new value
 search.addEventListener('keyup', () => {
     // Start counting from 0
     planItemIndex = 0;
-    // Update plan list with 100 elements and filtered by searched value
-    updatePlanList(100);
+    // Clean container to prevent duplicates
+    cleanContainer(container);
+    // Loading filtered elements
+    loadMore(100, search.value);
 });

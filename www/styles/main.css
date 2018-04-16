@@ -48,7 +48,7 @@ h3 {
     margin: 0 15px 0 0;
 }
 
-button, [role="button"] {
+#header button, [role="button"] {
     justify-content: center;
     align-items: center;
     text-decoration: none;
@@ -63,9 +63,22 @@ button, [role="button"] {
     transition: filter .5s ease-in;
 }
 
-button:hover, [role="button"]:hover {
+#header button:hover, [role="button"]:hover {
     filter: brightness(.9);
     transition: filter .5s ease-in;
+}
+
+#load-more button {
+    width: 100%;
+    box-sizing: border-box;
+    padding: .5em 1em;
+    font-size: 1em;
+    text-transform: uppercase;
+    font-family: 'Lato', sans-serif;
+    margin: .5em 0;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 
 [class*="type-"] {
