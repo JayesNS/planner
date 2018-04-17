@@ -1,4 +1,5 @@
 const planItemTemplate = getTemplate(document.querySelector('.plan-item'));
+const noMoreElements = getTemplate(document.querySelector('#no-more-elements'));
 let planList;
 let planItemIndex;
 let container;
@@ -26,6 +27,13 @@ const loadMore = (amount) => {
     let last = planItemIndex + amount;
     let filteredPlanList = filterPlanList(search.value);
 
+    console.log(filteredPlanList.length);
+    if (filteredPlanList.length === 0) {
+        console.log(noMoreElements);
+        container.appendChild(noMoreElements);
+        return;
+    }
+
     for (planItemIndex; planItemIndex < last; ++planItemIndex) {
         if (planItemIndex >= filteredPlanList.length)
             break;
@@ -51,6 +59,9 @@ const loadMore = (amount) => {
 
     if (filteredPlanList.length > planItemIndex)
         appendLoadMoreButton(container);
+    else {
+        deleteLoadMoreButton();
+    }
 };
 
 // Return filtered plan list items

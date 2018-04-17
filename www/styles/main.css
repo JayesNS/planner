@@ -81,6 +81,12 @@ h3 {
     cursor: pointer;
 }
 
+#no-more-elements {
+    text-align: center;
+    padding: 1em .5em .5em;
+    font-family: 'Lato', sans-serif;
+}
+
 [class*="type-"] {
     box-sizing: border-box;
     border-left: 4px solid;

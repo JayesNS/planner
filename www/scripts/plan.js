@@ -1,6 +1,7 @@
 let params = new URL(window.location.href).searchParams;
 const activityTemplate = getTemplate(document.querySelector('.activity'));
 const activityGroupTemplate = getTemplate(document.querySelector('.activity-group'));
+const noMoreElements = getTemplate(document.querySelector('#no-more-elements'));
 let loadedData;
 let loadedActivityGroups = 0;
 
@@ -47,8 +48,9 @@ document.querySelector('#back-button').addEventListener('click', (e) => {
 const groupBy = (array, by) => {
     let plan = [];
 
-    if (array === undefined) {
-        throw new Error('"array" is undefined');
+    if (array === undefined || array.length === undefined) {
+        console.warn('"array" is empty');
+        return plan;
     }
 
     array.forEach(elem => {
@@ -68,6 +70,9 @@ const groupBy = (array, by) => {
 
 const loadActivities = (amount) => {
     let targetLoadedActivityGroups = loadedActivityGroups + amount;
+
+    if (loadedData.length === 0)
+        document.querySelector('main').appendChild(noMoreElements);
 
     for (loadedActivityGroups;
          loadedActivityGroups < targetLoadedActivityGroups && loadedActivityGroups < loadedData.length;
@@ -116,6 +121,9 @@ const loadActivities = (amount) => {
 
     if (loadedActivityGroups < loadedData.length)
         appendLoadMoreButton(document.querySelector('main'));
+    else {
+        deleteLoadMoreButton();
+    }
 };
 
 const load = (range) => {
@@ -125,7 +133,7 @@ const load = (range) => {
     //loadActivities(loadFromLocalStorage()['zajecia']);
 
     getData(prepareUrl(params.get('type'), params.get('id'), range)).then(data => {
-        loadedData = groupBy(data['zajecia'], 'termin');;
+        loadedData = groupBy(data['zajecia'], 'termin');
 
         document.querySelector('#save-button').addEventListener('click', () => {
             saveToLocalStorage(data);

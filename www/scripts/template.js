@@ -1,10 +1,15 @@
 const getTemplate = (templateElement) => {
-    const template = templateElement;
-    template.remove();
-    return template;
+    // If there isn't template, return
+    if (!templateElement)
+        return;
+
+    // Delete template from DOM and return
+    templateElement.remove();
+    return templateElement;
 };
 
 const fillAndInsertTemplate = (container, template, classesAndValues) => {
+    // Clone node
     const element = template.cloneNode(true);
 
     for (let className in classesAndValues.elements) {
@@ -39,12 +44,6 @@ const changeText = (element, text) => {
     text = text['$t'] !== undefined ? text['$t'] : text;
     // Checking if object is empty
     text = Object.keys(text).length === 0 && text.constructor === Object ? '' : text;
-
-    /*// If text not set delete element
-    if (!text) {
-        element.remove();
-        return;
-    }*/
 
     // Append text to element
     element.textContent = text;
