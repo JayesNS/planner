@@ -10,15 +10,16 @@ const getTemplate = (templateElement) => {
 
 const fillAndInsertTemplate = (container, template, classesAndValues) => {
     // Clone node
-    const element = template.cloneNode(true);
+    const main = template.cloneNode(true);
 
-    for (let className in classesAndValues.elements) {
-        let item = classesAndValues.elements[className];
+    for (let className in classesAndValues['elements']) {
+        let item = classesAndValues['elements'][className];
+        const element = main.querySelector(className);
 
         if (item.text) {
-            changeText(element.querySelector(className), item.text);
-        }
+            changeText(element, item.text);
 
+        }
         if (item.eventListener) {
             element.addEventListener(item.eventListener.type, item.eventListener.func)
         }
@@ -26,12 +27,12 @@ const fillAndInsertTemplate = (container, template, classesAndValues) => {
 
     if (classesAndValues.classes) {
         for (let className of classesAndValues.classes) {
-            element.classList.add(className);
+            main.classList.add(className);
         }
     }
 
     if (container !== null)
-        container.appendChild(element);
+        container.appendChild(main);
 };
 
 const changeText = (element, text) => {
