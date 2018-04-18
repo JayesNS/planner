@@ -127,26 +127,40 @@ const loadActivities = (amount) => {
 };
 
 const load = (range) => {
-    console.debug(prepareUrl(params.get('type'), params.get('id'), range));
+    const planParams = getSessionItem(sessionKeys.RECENTLY_OPENED_PLAN);
 
-    // Loading data from local storage
-    //loadActivities(loadFromLocalStorage()['zajecia']);
+    const url = prepareUrl(planParams['typ'], planParams['id'], range);
+    console.debug(url);
 
-    getData(prepareUrl(params.get('type'), params.get('id'), range)).then(data => {
+    // Loading data from local storage or from remote server
+    if (planParams['local']) {
+        let data = loadFromLocalStorage('plans')[planParams['nazwa']];
+        console.log(data);
+
         loadedData = groupBy(data['zajecia'], 'termin');
 
-        document.querySelector('#save-button').addEventListener('click', () => {
-            saveToLocalStorage(data);
-        });
-
         loadActivities(10);
-    }).catch(error => {
-        console.error(error);
-    });
+    } else {
+        getData(url).then(data => {
+            loadedData = groupBy(data['zajecia'], 'termin');
+
+            document.querySelector('#save-button').addEventListener('click', () => {
+                saveToLocalStorage(data);
+            });
+
+            loadActivities(10);
+        }).catch(error => {
+            console.error(error);
+        });
+    }
 };
 
 document.querySelector('#plan-range').addEventListener('change', (e) => {
     loadedActivityGroups = 0;
+    let recentlyOpenedPlan = getSessionItem(sessionKeys.RECENTLY_OPENED_PLAN);
+    recentlyOpenedPlan['okres'] = e.target.value;
+
+    setSessionItem(sessionKeys.RECENTLY_OPENED_PLAN, recentlyOpenedPlan);
     cleanContainer(document.querySelector('main'));
     load(e.target.value);
 });

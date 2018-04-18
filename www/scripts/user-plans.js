@@ -17,7 +17,11 @@ for (let planId in plans) {
                     func: (e) => {
                         e.stopPropagation();
 
-                        document.location = 'plan.html?type='+plan['typ']+'&id='+plan['id'];
+                        setSessionItem(sessionKeys.RECENTLY_OPENED_PLAN, {
+                            nazwa: plan['nazwa'],
+                            local: true
+                        });
+                        document.location = 'plan.html';
                     }
                 }
             },

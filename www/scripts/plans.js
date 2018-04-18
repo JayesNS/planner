@@ -5,6 +5,8 @@ let planItemIndex;
 let container;
 
 const search = document.querySelector('#search');
+if (getSessionItem(sessionKeys.RECENTLY_SEARCHED_VALUE))
+    search.value = getSessionItem(sessionKeys.RECENTLY_SEARCHED_VALUE);
 
 onTabChange = (element, previousContainer) => {
     planItemIndex = 0;
@@ -27,9 +29,7 @@ const loadMore = (amount) => {
     let last = planItemIndex + amount;
     let filteredPlanList = filterPlanList(search.value);
 
-    console.log(filteredPlanList.length);
     if (filteredPlanList.length === 0) {
-        console.log(noMoreElements);
         container.appendChild(noMoreElements);
         return;
     }
@@ -49,7 +49,14 @@ const loadMore = (amount) => {
                         type: 'click',
                         func: (e) => {
                             e.stopPropagation();
-                            document.location = 'plan.html?type='+item['typ']+'&id='+item['id'];
+
+                            setSessionItem(sessionKeys.RECENTLY_OPENED_PLAN, {
+                                nazwa: item['nazwa'],
+                                typ: item['typ'],
+                                id: item['id'],
+                                local: false
+                            });
+                            document.location = 'plan.html';
                         }
                     }
                 }
@@ -78,6 +85,8 @@ search.addEventListener('keyup', () => {
     planItemIndex = 0;
     // Clean container to prevent duplicates
     cleanContainer(container);
+    // Setting last searched value to session
+    setSessionItem(sessionKeys.RECENTLY_SEARCHED_VALUE, search.value);
     // Loading filtered elements
     loadMore(100, search.value);
 });

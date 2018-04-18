@@ -32,11 +32,14 @@ const activate = (element, elementClass) => {
 tabButtons.forEach((tabButton, index) => {
     tabButton.addEventListener('click', (event) => {
         let element = event.target;
-
         activate(element, tabButtonClass);
-        activate(tabs[index], tabClass)
+        activate(tabs[index], tabClass);
+
+        setSessionItem(sessionKeys.RECENTLY_ACTIVED_TAB, index);
     });
 });
 
-activate(tabButtons[0], tabButtonClass);
-activate(tabs[0], tabClass);
+const lastActiveTab = getSessionItem(sessionKeys.RECENTLY_ACTIVED_TAB) || 0;
+
+activate(tabButtons[lastActiveTab], tabButtonClass);
+activate(tabs[lastActiveTab], tabClass);
