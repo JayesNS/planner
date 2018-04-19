@@ -5,7 +5,7 @@ const localStorageKeys = {
 // Setting plan to local storage
 const setLocalPlan = (plan) => {
     // Obtaining local plan list
-    let localPlans = getLocalPlans();
+    let localPlans = getLocalPlans() || {};
 
     // Appending new plan to list
     localPlans[plan['nazwa']] = plan;
