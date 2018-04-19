@@ -166,7 +166,7 @@ document.querySelector('#plan-range').addEventListener('change', (e) => {
     recentlyOpenedPlan['okres'] = e.target.value;
 
     setSessionItem(sessionKeys.RECENTLY_OPENED_PLAN, recentlyOpenedPlan);
-    cleanContainer(document.querySelector('main'));
+    clearContainer(document.querySelector('main'));
     load(e.target.value);
 });
 

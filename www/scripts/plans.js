@@ -12,7 +12,7 @@ onTabChange = (element, previousContainer) => {
     planItemIndex = 0;
     container = element;
 
-    cleanContainer(previousContainer);
+    clearContainer(previousContainer);
 
     getData(prepareUrl(getPlanType())).then(data => {
         planList = data['zasob'];
@@ -84,7 +84,7 @@ search.addEventListener('keyup', () => {
     // Start counting from 0
     planItemIndex = 0;
     // Clean container to prevent duplicates
-    cleanContainer(container);
+    clearContainer(container);
     // Setting last searched value to session
     setSessionItem(sessionKeys.RECENTLY_SEARCHED_VALUE, search.value);
     // Loading filtered elements
