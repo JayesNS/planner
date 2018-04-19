@@ -48,7 +48,8 @@ h3 {
     margin: 0 15px 0 0;
 }
 
-#header button, [role="button"] {
+#header button,
+#header [role="button"] {
     justify-content: center;
     align-items: center;
     text-decoration: none;
@@ -63,7 +64,8 @@ h3 {
     transition: filter .5s ease-in;
 }
 
-#header button:hover, [role="button"]:hover {
+#header button:hover,
+#header [role="button"]:hover {
     filter: brightness(.9);
     transition: filter .5s ease-in;
 }

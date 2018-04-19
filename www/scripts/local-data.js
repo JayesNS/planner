@@ -1,20 +1,34 @@
-const saveToLocalStorage = (data) => {
-    const key = 'plans';
-
-    let planArray = {};
-    if (localStorage.getItem(key)) {
-        planArray = JSON.parse(localStorage.getItem('plans'));
-    }
-
-    planArray[data['nazwa']] = data;
-    console.log(planArray);
-    localStorage.setItem(key, JSON.stringify(planArray));
+const localStorageKeys = {
+    'LOCAL_PLANS': 'local-plans'
 };
 
-const loadFromLocalStorage = (key) => {
-    const mainKey = 'plans';
+const setLocalPlan = (plan) => {
+    if (!localStorage.getItem(localStorageKeys.LOCAL_PLANS))
+        return;
 
-    if (localStorage.getItem(mainKey)) {
-        return JSON.parse(localStorage.getItem(mainKey))[key] || JSON.parse(localStorage.getItem(mainKey));
-    }
+    let localPlans = JSON.parse(localStorage.getItem(localStorageKeys.LOCAL_PLANS));
+
+    localPlans[plan['nazwa']] = plan;
+    localStorage.setItem(localStorageKeys.LOCAL_PLANS, JSON.stringify(localPlans));
+};
+
+const getLocalPlans = (planName) => {
+    if (!localStorage.getItem(localStorageKeys.LOCAL_PLANS))
+        return;
+
+    if (planName)
+        return JSON.parse(localStorage.getItem(localStorageKeys.LOCAL_PLANS))[planName];
+
+    return JSON.parse(localStorage.getItem(localStorageKeys.LOCAL_PLANS));
+};
+
+const removeLocalPlan = (planName) => {
+    if (!localStorage.getItem(localStorageKeys.LOCAL_PLANS))
+        return;
+
+    let localPlans = getLocalPlans();
+    delete localPlans[planName];
+    localStorage.setItem(localStorageKeys.LOCAL_PLANS, JSON.stringify(localPlans));
+
+    console.log(planName, localPlans);
 };

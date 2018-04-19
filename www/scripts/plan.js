@@ -1,7 +1,7 @@
-let params = new URL(window.location.href).searchParams;
 const activityTemplate = getTemplate(document.querySelector('.activity'));
 const activityGroupTemplate = getTemplate(document.querySelector('.activity-group'));
 const noMoreElements = getTemplate(document.querySelector('#no-more-elements'));
+
 let loadedData;
 let loadedActivityGroups = 0;
 
@@ -35,7 +35,7 @@ const formatDate = (date) => {
       11: 'grudnia',
   };
 
-    const datetime = new Date(date);
+  const datetime = new Date(date);
   return `${datetime.getDate()} ${Months[datetime.getMonth()]} ${datetime.getFullYear()}`;
 };
 
@@ -129,12 +129,15 @@ const loadActivities = (amount) => {
 const load = (range) => {
     const planParams = getSessionItem(sessionKeys.RECENTLY_OPENED_PLAN);
 
+    const planRange = document.querySelector('#plan-range');
+    const rangeName = planRange.children[planRange.value - 1].text;
+
     const url = prepareUrl(planParams['typ'], planParams['id'], range);
     console.debug(url);
 
     // Loading data from local storage or from remote server
     if (planParams['local']) {
-        let data = loadFromLocalStorage('plans')[planParams['nazwa']];
+        let data = getLocalPlans()[planParams['nazwa']];
         console.log(data);
 
         loadedData = groupBy(data['zajecia'], 'termin');
@@ -143,9 +146,10 @@ const load = (range) => {
     } else {
         getData(url).then(data => {
             loadedData = groupBy(data['zajecia'], 'termin');
+            data['nazwa'] = `${data['nazwa']} - ${rangeName}`;
 
             document.querySelector('#save-button').addEventListener('click', () => {
-                saveToLocalStorage(data);
+                setLocalPlan(data);
             });
 
             loadActivities(10);
@@ -157,7 +161,8 @@ const load = (range) => {
 
 document.querySelector('#plan-range').addEventListener('change', (e) => {
     loadedActivityGroups = 0;
-    let recentlyOpenedPlan = getSessionItem(sessionKeys.RECENTLY_OPENED_PLAN);
+    const recentlyOpenedPlan = getSessionItem(sessionKeys.RECENTLY_OPENED_PLAN);
+    recentlyOpenedPlan['nazwa-okresu'] = e.target.children[e.target.value-1].text;
     recentlyOpenedPlan['okres'] = e.target.value;
 
     setSessionItem(sessionKeys.RECENTLY_OPENED_PLAN, recentlyOpenedPlan);
