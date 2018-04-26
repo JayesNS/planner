@@ -48,7 +48,9 @@ app.get('/api/:type/:id?/:range?', (req, res) => {
     let type = req.params.type.length === 1 ? req.params.type : Type[req.params.type];
 
     getRawJSON(prepareUrl(type, req.params.id, req.params.range)).then((data) => {
-        res.json(JSON.parse(data)['plan-zajec']);
+        const json = JSON.parse(data)['plan-zajec'];
+        json['okres'] = req.params.range;
+        res.json(json);
     });
 });
 
