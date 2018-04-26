@@ -5,6 +5,8 @@ const noMoreElements = getTemplate(document.querySelector('#no-more-elements'));
 let loadedData;
 let loadedActivityGroups = 0;
 
+const saveButton = document.querySelector('#save-button');
+
 const formatWeekDay = (day) => {
     const WeekDays = {
         'Pn': 'Poniedziałek',
@@ -140,15 +142,21 @@ const load = (range) => {
         let data = getLocalPlans()[planParams['nazwa']];
         console.log(data);
 
+        saveButton.querySelector('i').textContent = 'delete';
+        saveButton.addEventListener('click', () => {
+            console.log(planParams['nazwa']);
+            removeLocalPlan(planParams['nazwa']);
+            window.history.back();
+        });
+
         loadedData = groupBy(data['zajecia'], 'termin');
 
         loadActivities(10);
     } else {
         getData(url).then(data => {
             loadedData = groupBy(data['zajecia'], 'termin');
-            data['nazwa'] = `${data['nazwa']} - ${rangeName}`;
 
-            document.querySelector('#save-button').addEventListener('click', () => {
+            saveButton.addEventListener('click', () => {
                 setLocalPlan(data);
             });
 

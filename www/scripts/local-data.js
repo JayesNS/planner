@@ -2,13 +2,21 @@ const localStorageKeys = {
     'LOCAL_PLANS': 'local-plans'
 };
 
+const localPlanRange = {
+    1: "Aktualny",
+    2: "Pełny",
+    3: "Poprzedni"
+};
+
 // Setting plan to local storage
 const setLocalPlan = (plan) => {
     // Obtaining local plan list
     let localPlans = getLocalPlans() || {};
 
+    const name = `${plan['nazwa']} - ${localPlanRange[plan['okres']]}`;
+
     // Appending new plan to list
-    localPlans[plan['nazwa']] = plan;
+    localPlans[name] = plan;
 
     // Saving updated list to localStorage
     localStorage.setItem(localStorageKeys.LOCAL_PLANS, JSON.stringify(localPlans));
@@ -28,6 +36,22 @@ const getLocalPlans = (planName) => {
 
     // If parameter is not given return all local plans
     return JSON.parse(localPlans);
+};
+
+const updateLocalPlan = (planName) => {
+    let localPlans = getLocalPlans();
+
+    for (let planName in localPlans) {
+        if (!localPlans.hasOwnProperty(planName)) {
+            continue;
+        }
+
+        const plan = localPlans[planName];
+
+        getData(prepareUrl(plan['typ'], plan['id'], plan['okres'])).then(data => {
+            setLocalPlan(data);
+        });
+    }
 };
 
 // Remove plan with given name
