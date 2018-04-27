@@ -27,6 +27,19 @@ const addToSessionItem = (key, data) => {
     setSessionItem(key, object);
 };
 
+const createSession = () => {
+    for (const key in sessionKeys) {
+        if (!sessionKeys.hasOwnProperty(key))
+            return;
+
+        setSessionItem(sessionKeys[key], null);
+    }
+};
+
+const isSessionCreated = () => {
+  return sessionStorage.length > 0;
+};
+
 const removeFromSessionItem = (key, data) => {
     console.log(getSessionItem(key));
     setSessionItem(key, getSessionItem(key).filter(val => JSON.stringify(val) !== JSON.stringify(data)));

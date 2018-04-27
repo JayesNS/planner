@@ -50,6 +50,7 @@ const updateLocalPlan = (planName) => {
 
         getData(prepareUrl(plan['typ'], plan['id'], plan['okres'])).then(data => {
             setLocalPlan(data);
+            showToast("Plans updated", 2000);
         });
     }
 };
