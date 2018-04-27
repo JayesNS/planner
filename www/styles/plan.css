@@ -1,17 +1,3 @@
-/* Plan range */
-#plan-range {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    border: none;
-    background: none;
-    margin: .25em .5em;
-    font-size: 14pt;
-    font-family: 'Roboto', sans-serif;
-    color: floralwhite;
-    flex-grow: 1;
-    border-bottom: 1px solid lightslategray;
-}
-
 /* Activity groups */
 .activity-group {
     width: 100%;
@@ -24,11 +10,11 @@
     padding: .25em 1em;
     margin: 0 .5em .5em;
     font-family: 'Lato', sans-serif;
-    color: salmon;
-    border-bottom: 2px solid salmon;
+    border-bottom: 2px solid #f55d5d;
 }
 .activity-day {
     font-size: .8em;
+    color: #f55d5d;
     text-transform: uppercase;
 }
 .activity-date {
@@ -45,6 +31,8 @@
     font-family: 'Roboto', sans-serif;
     font-size: 10pt;
     color: #4a4a4c;
+    border-width: 0 0 1px 4px;
+    border-style: solid;
 }
 
 .activity div {
@@ -94,18 +82,23 @@
 }
 
 .activity:nth-child(1) {
-    border-left: 4px solid mediumaquamarine;
-    border-bottom: 1px solid mediumaquamarine;
+    border-color: salmon;
 }
 .activity:nth-child(2) {
-    border-left: 4px solid slateblue;
-    border-bottom: 1px solid slateblue;
+    border-color: cornflowerblue;
 }
 .activity:nth-child(3) {
-    border-left: 4px solid yellowgreen;
-    border-bottom: 1px solid yellowgreen;
+    border-color: yellowgreen;
 }
 .activity:nth-child(4) {
-    border-left: 4px solid tomato;
-    border-bottom: 1px solid tomato;
+    border-color: orange;
+}
+.activity:nth-child(5) {
+    border-color: blueviolet;
+}
+.activity:nth-child(6) {
+    border-color: teal;
+}
+.activity:nth-child(7) {
+    border-color: darkgoldenrod;
 }
