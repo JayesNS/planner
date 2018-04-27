@@ -144,8 +144,8 @@ const load = (range) => {
 
         saveButton.querySelector('i').textContent = 'delete';
         saveButton.addEventListener('click', () => {
-            console.log(planParams['nazwa']);
             removeLocalPlan(planParams['nazwa']);
+            showToast('Usunięto lokalny plan', 2000);
             window.history.back();
         });
 
@@ -158,6 +158,7 @@ const load = (range) => {
 
             saveButton.addEventListener('click', () => {
                 setLocalPlan(data);
+                showToast('Zapisano plan', 2000);
             });
 
             loadActivities(10);

@@ -36,7 +36,7 @@ const showToast = (text, time) => {
             setTimeout(() => {
                 toast.classList.remove('active');
             }, time);
-        }, 0);
+        }, 1);
     });
 };
 
