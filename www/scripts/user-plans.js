@@ -1,5 +1,6 @@
 // Extracting templates from DOM
 const planItemTemplate = getTemplate(document.querySelector('.plan-item'));
+const noMoreElements = getTemplate(document.querySelector('#no-more-elements'));
 const container = document.querySelector('main');
 
 // Extending shortcuts of names to full names of groups
@@ -7,6 +8,19 @@ const Type = {'g': 'group', 'n': 'teacher', 's': 'classroom'};
 
 // Assigning plans from local storage and iterating through them
 const plans = getLocalPlans();
+
+const localPlansEmpty = () => {
+    return Object.keys(plans).length === 0;
+};
+
+const showNoMoreElementsText = (container) => {
+    container.appendChild(noMoreElements);
+};
+
+if (localPlansEmpty()) {
+    showNoMoreElementsText(container);
+}
+
 for (let planName in plans) {
     // Checking if object has the property
     if (!plans.hasOwnProperty(planName)) {
@@ -44,8 +58,16 @@ for (let planName in plans) {
 
                         // Remove plan from local storage
                         removeLocalPlan(planName);
+
+                        delete plans[planName];
+
                         // Remove plan from list
                         getAscendant(e.target, 3).remove();
+                        showToast('Usunięto lokalny plan', 2000);
+
+                        if (localPlansEmpty()) {
+                            showNoMoreElementsText(container);
+                        }
                     }
                 }
             },
