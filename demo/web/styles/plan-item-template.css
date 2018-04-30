@@ -1,0 +1,18 @@
+.plan-item {
+    display: flex;
+    color: #4a4a4c;
+    cursor: pointer;
+    margin: .5em 1em;
+}
+
+.plan-item-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .4em 0 .4em .5em;
+}
+
+.plan-item-controls {
+    white-space: nowrap;
+}

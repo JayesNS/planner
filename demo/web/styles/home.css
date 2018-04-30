@@ -1,0 +1,106 @@
+#title-header {
+    justify-content: center !important;
+}
+
+#main {
+    justify-content: space-around !important;
+}
+
+.bookmark {
+    width: 18vh;
+    height: 18vh;
+    background: dimgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: .2;
+}
+
+.bookmark i {
+    font-size: 7.5vh;
+}
+
+.sliding-item {
+    position: relative;
+    text-decoration: none;
+    color: floralwhite;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    transition: ease-out .5s;
+}
+
+.sliding-item:nth-child(odd) {
+    flex-direction: row-reverse;
+    margin-right: 9vh;
+}
+.sliding-item:nth-child(even) {
+    flex-direction: row;
+    margin-left: 9vh;
+}
+
+.sliding-item:hover {
+    transition: ease-in .5s;
+}
+.sliding-item:nth-child(odd):hover {
+    padding-left: 4.5vh;
+    margin-right: 4.5vh;
+}
+.sliding-item:nth-child(even):hover {
+    padding-right: 4.5vh;
+    margin-left: 4.5vh;
+}
+
+.sliding-item h3 {
+    font-family: 'Lato', sans-serif;
+    font-size: 14pt;
+    width: calc(100% - 18vh);
+    display: inline-flex;
+    justify-content: center;
+    text-align: center;
+    opacity: .7;
+}
+
+.sliding-item:nth-child(1) {
+    background: tomato;
+}
+.sliding-item:nth-child(2) {
+    background: cornflowerblue;
+}
+.sliding-item:nth-child(3) {
+    background: yellowgreen;
+}
+.sliding-item:nth-child(4) {
+    background: mediumorchid;
+}
+
+@media screen and (min-aspect-ratio: 4/3) {
+    #main {
+        flex-direction: row;
+    }
+
+    .sliding-item {
+        flex-direction: column-reverse !important;
+        justify-content: space-between;
+        width: 15vw !important;
+        margin: 0 !important;
+        margin-bottom: 7.5vw !important;
+
+    }
+    .sliding-item:hover {
+        margin: 0 !important;
+        padding: 0 !important;
+        margin-bottom: 3.75vw !important;
+    }
+
+    .sliding-item h3 {
+        width: auto !important;
+        transform: rotateZ(-90deg);
+        height: calc(100% - 15vw);
+    }
+
+    .bookmark {
+        width: 15vw !important;
+        height: 15vw !important;
+    }
+}

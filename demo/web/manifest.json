@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "Planer UEK",
+  "short_name": "Planer UEK",
+  "version": "me.jsthats.planner",
+  "description": "Aplikacja planu zajęć dla Uniwerystetu Ekonomicznego w Krakowie.",
+  "author": "Jakub Szkarłat",
+  "icons": [],
+  "start_url": "home.html"
+}
